@@ -1,0 +1,64 @@
+Pandas Learning Guide
+=====================
+
+This file lists the main topics you should learn in pandas, in a practical order.
+
+1. Basics
+- Install pandas
+- Import pandas as pd
+- Understand Series and DataFrame
+- Create objects from lists, dictionaries, arrays, and CSV files
+- Inspect data with head(), tail(), info(), describe(), shape, columns
+
+2. Indexing and Selection
+- Select columns: df['col']
+- Select rows by position: .iloc[]
+- Select rows by label: .loc[]
+- Use boolean filtering
+- Slice data
+
+3. Data Cleaning
+- Handle missing values: isna(), fillna(), dropna()
+- Remove duplicates: drop_duplicates()
+- Rename columns and change data types
+- Replace values
+
+4. Data Transformation
+- Sort values: sort_values()
+- Filter rows: query() or boolean masks
+- Add or remove columns
+- Apply functions: apply(), map()
+
+5. Grouping and Aggregation
+- Group by one or more columns
+- Use agg(), sum(), mean(), count(), min(), max()
+- Create summary tables
+
+6. Combining Data
+- Merge dataframes: merge()
+- Concatenate data: concat()
+- Join tables
+
+7. Input and Output
+- Read CSV, Excel, JSON, SQL data
+- Write data to CSV, Excel, JSON
+- Use common parameters like sep, header, usecols, nrows
+
+8. Advanced Topics
+- Multi-index and hierarchical data
+- Time series with datetime
+- Plotting with pandas and matplotlib
+- Performance tips for large datasets
+
+Suggested learning path
+- Start with Series and DataFrame basics
+- Practice selection and filtering
+- Learn cleaning and missing values
+- Move to grouping and aggregation
+- Finally study merging, I/O, and time series
+
+Practice ideas
+- Load a CSV file and explore it
+- Clean a dataset with missing values
+- Group data by category and calculate summaries
+- Merge two tables and answer a business question

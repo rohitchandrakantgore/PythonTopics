@@ -1,0 +1,26 @@
+Pandas Differences Quick Notes
+==============================
+
+1. Series vs DataFrame
+- Series: 1D labeled array, like one column of data.
+- DataFrame: 2D labeled table, like multiple columns in a table.
+- Use Series for single-column or single-dimensional data.
+- Use DataFrame for tabular data with rows and columns.
+
+2. loc vs iloc
+- loc: label-based indexing.
+  - Example: df.loc[0] selects by row label.
+  - Example: df.loc[0:1] selects rows with labels 0 through 1.
+- iloc: position-based indexing.
+  - Example: df.iloc[0] selects the first row by position.
+  - Example: df.iloc[0:2] selects the first two rows by position.
+- Use loc when you know the row/column labels.
+- Use iloc when you know the positions.
+
+3. Common beginner reminder
+- head(): show first rows
+- tail(): show last rows
+- info(): show column types and missing values
+- describe(): show summary statistics
+- shape: show number of rows and columns
+- columns: show column names
