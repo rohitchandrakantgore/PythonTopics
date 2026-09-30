@@ -2,10 +2,26 @@ import json
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import CreateView, ListView
 
+from .forms import ProductForm
 from .models import Product
 from .serializers import serialize_product
+
+
+class ProductCatalogView(ListView):
+	model = Product
+	template_name = 'store/product_list.html'
+	context_object_name = 'products'
+	ordering = '-created_at'
+
+
+class ProductCreatePageView(CreateView):
+	form_class = ProductForm
+	template_name = 'store/product_form.html'
+	success_url = reverse_lazy('product-catalog')
 
 
 class ProductListView(View):

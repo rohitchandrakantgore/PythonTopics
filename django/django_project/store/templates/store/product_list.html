@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Store Catalog</title>
+	<link rel="stylesheet" href="{% static 'store/store.css' %}">
+</head>
+<body>
+	<header class="topbar">
+		<a class="brand" href="/store/">STORE<span>CATALOG</span></a>
+		<nav class="topbar-links" aria-label="Store navigation">
+			<a class="admin-link" href="/admin/">Admin</a>
+			<a class="add-link" href="{% url 'product-create-page' %}">Add product</a>
+		</nav>
+	</header>
+
+	<main class="catalog">
+		<section class="page-heading">
+			<div>
+				<p class="eyebrow">PRODUCTS <span>{{ products|length }}</span></p>
+				<h1>Store catalog</h1>
+			</div>
+			<a class="add-link" href="{% url 'product-create-page' %}">Add product</a>
+		</section>
+
+		{% if products %}
+			<section class="product-list" aria-label="Products">
+				{% for product in products %}
+					<article class="product">
+						<div class="product-meta">
+							<span>ITEM {{ product.id }}</span>
+							<span class="product-dot" aria-hidden="true"></span>
+						</div>
+						<h2>{{ product.name }}</h2>
+						<p class="description">{{ product.description|linebreaksbr }}</p>
+						<p class="price">{{ product.price }}</p>
+					</article>
+				{% endfor %}
+			</section>
+		{% else %}
+			<p class="empty-state">No products yet.</p>
+		{% endif %}
+	</main>
+</body>
+</html>

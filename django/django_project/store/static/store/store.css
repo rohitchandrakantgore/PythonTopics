@@ -1,0 +1,281 @@
+:root {
+	color-scheme: light;
+	--paper: #f4f5ef;
+	--surface: #ffffff;
+	--ink: #202b27;
+	--muted: #6c7771;
+	--line: #dce2dc;
+	--green: #25634e;
+	--orange: #d77b45;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background-color: var(--paper);
+	background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgb(32 43 39 / 3%) 40px);
+	color: var(--ink);
+	font-family: "Trebuchet MS", sans-serif;
+}
+
+a {
+	color: inherit;
+}
+
+.topbar {
+	min-height: 68px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 6vw;
+	border-bottom: 1px solid var(--line);
+	background: var(--paper);
+}
+
+.brand {
+	font-size: 14px;
+	font-weight: 800;
+	letter-spacing: 1px;
+	text-decoration: none;
+}
+
+.brand span {
+	margin-left: 8px;
+	color: var(--green);
+	font-weight: 500;
+}
+
+.admin-link {
+	font-size: 14px;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
+.topbar-links {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+.add-link {
+	color: var(--green);
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
+.catalog {
+	width: min(1120px, calc(100% - 48px));
+	margin: 0 auto;
+	padding: 72px 0 96px;
+}
+
+.page-heading {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	margin-bottom: 32px;
+	border-bottom: 1px solid var(--ink);
+}
+
+.eyebrow {
+	margin: 0 0 12px;
+	color: var(--green);
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 1px;
+}
+
+.eyebrow span {
+	margin-left: 8px;
+	color: var(--muted);
+}
+
+h1 {
+	margin: 0 0 22px;
+	font-family: Georgia, serif;
+	font-size: 48px;
+	font-weight: 400;
+}
+
+.product-list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1px;
+	border: 1px solid var(--line);
+	background: var(--line);
+}
+
+.product {
+	min-height: 230px;
+	display: flex;
+	flex-direction: column;
+	padding: 24px;
+	background: var(--surface);
+}
+
+.product-meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: var(--muted);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+.product-dot {
+	width: 9px;
+	 aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--orange);
+}
+
+.product h2 {
+	margin: 30px 0 8px;
+	font-family: Georgia, serif;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 1.2;
+	overflow-wrap: anywhere;
+}
+
+.description {
+	margin: 0;
+	color: var(--muted);
+	font-size: 14px;
+	line-height: 1.6;
+	white-space: normal;
+}
+
+.price {
+	margin: auto 0 0;
+	padding-top: 24px;
+	color: var(--green);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.empty-state {
+	padding: 32px 0;
+	border-top: 1px solid var(--line);
+	color: var(--muted);
+}
+
+.product-form {
+	width: min(100%, 680px);
+	display: grid;
+	gap: 22px;
+	padding: 28px;
+	border: 1px solid var(--line);
+	background: var(--surface);
+}
+
+.form-field {
+	display: grid;
+	gap: 8px;
+}
+
+.form-field label {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.form-field input,
+.form-field textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #aeb9b1;
+	border-radius: 2px;
+	background: #fff;
+	color: var(--ink);
+	font: inherit;
+}
+
+.form-field textarea {
+	min-height: 120px;
+	resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+	border-color: var(--green);
+	outline: 2px solid rgb(37 99 78 / 18%);
+}
+
+.form-error {
+	margin: 0;
+	color: #9b3f27;
+	font-size: 14px;
+}
+
+.form-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 20px;
+}
+
+.cancel-link {
+	font-size: 14px;
+	text-underline-offset: 4px;
+}
+
+.submit-button {
+	min-height: 44px;
+	padding: 0 18px;
+	border: 0;
+	border-radius: 2px;
+	background: var(--green);
+	color: #fff;
+	font: inherit;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.submit-button:disabled {
+	opacity: 0.65;
+	cursor: wait;
+}
+
+@media (max-width: 760px) {
+	.catalog {
+		padding-top: 48px;
+	}
+
+	.product-list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 520px) {
+	.topbar {
+		padding: 0 20px;
+	}
+
+	.catalog {
+		width: calc(100% - 32px);
+		padding: 40px 0 64px;
+	}
+
+	.product-form {
+		padding: 20px;
+	}
+
+	h1 {
+		font-size: 38px;
+	}
+
+	.product-list {
+		grid-template-columns: 1fr;
+	}
+
+	.product {
+		min-height: 200px;
+	}
+}

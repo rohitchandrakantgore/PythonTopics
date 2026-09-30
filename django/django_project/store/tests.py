@@ -16,6 +16,36 @@ class ProductApiTests(TestCase):
 			name='Notebook', description='Ruled pages', price='4.50'
 		)
 
+	def test_catalog_page_lists_products(self):
+		self.create_product()
+		response = self.client.get('/store/')
+		self.assertEqual(response.status_code, 200)
+		self.assertContains(response, 'Notebook')
+		self.assertContains(response, 'store/store.css')
+
+	def test_product_form_creates_product(self):
+		response = self.client.get('/store/products/new/')
+		self.assertEqual(response.status_code, 200)
+		self.assertContains(response, 'name="csrfmiddlewaretoken"')
+
+		response = self.client.post('/store/products/new/', {
+			'name': 'Desk lamp',
+			'description': 'Adjustable task light',
+			'price': '24.50',
+		})
+		self.assertRedirects(response, '/store/')
+		self.assertTrue(Product.objects.filter(name='Desk lamp').exists())
+
+	def test_product_form_rejects_invalid_price(self):
+		response = self.client.post('/store/products/new/', {
+			'name': 'Desk lamp',
+			'description': 'Adjustable task light',
+			'price': 'not-a-price',
+		})
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(Product.objects.count(), 0)
+		self.assertFormError(response.context['form'], 'price', 'Enter a number.')
+
 	def test_create_and_list_products(self):
 		response = self.client.post(
 			f'{self.collection_url}create/',
