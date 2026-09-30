@@ -19,6 +19,14 @@ django/
 	|   |-- tests.py
 	|   |-- urls.py
 	|   `-- views.py
+	|-- store/
+	|   |-- migrations/
+	|   |-- admin.py
+	|   |-- models.py
+	|   |-- serializers.py
+	|   |-- tests.py
+	|   |-- urls.py
+	|   `-- views.py
 	|-- django_project/
 	|   |-- asgi.py
 	|   |-- settings.py
@@ -49,6 +57,13 @@ django/
 | `blog/admin.py` | Registers `Post` so it can be managed through Django's built-in admin site. |
 | `blog/migrations/` | Stores versioned database schema changes. `0001_initial.py` creates the `Post` table. |
 | `blog/tests.py` | Tests the blog API behavior. |
+| `store/models.py` | Defines the `Product` model with name, description, price, and timestamps. |
+| `store/views.py` | Defines separate class-based views for listing, retrieving, creating, updating, and deleting products. |
+| `store/serializers.py` | Converts a `Product` model instance to JSON-ready data. |
+| `store/urls.py` | Maps store API paths to the class-based views. |
+| `store/admin.py` | Registers `Product` in Django admin. |
+| `store/migrations/` | Stores database schema changes for the store app. |
+| `store/tests.py` | Tests the store API behavior. |
 | `templates/` | HTML templates rendered by views, commonly stored inside an app. |
 | `static/` | App-owned CSS, JavaScript, and image assets. |
 | `forms.py` | Optional app module for form fields, validation, and model-backed forms. |
@@ -110,16 +125,40 @@ Create and update requests send JSON with both fields:
 
 The API response includes the post ID, title, content, and timestamps. A missing post returns `404`. The project has Django's CSRF middleware enabled, so clients making `POST`, `PUT`, or `DELETE` requests must provide a valid CSRF token.
 
+### Store API
+
+Store routes are mounted under `/store/`. Each product operation is handled by its own class-based view:
+
+| Method | Path | Use |
+| --- | --- | --- |
+| `GET` | `/store/api/products/` | Get all products. |
+| `GET` | `/store/api/products/<id>/` | Get one product by its database ID. |
+| `POST` | `/store/api/products/create/` | Create a product. |
+| `PUT` | `/store/api/products/update/<id>/` | Replace a product's name, description, and price. |
+| `DELETE` | `/store/api/products/delete/<id>/` | Delete a product. |
+
+Create and update requests send JSON with all product fields:
+
+```json
+{
+	"name": "Notebook",
+	"description": "Ruled pages",
+	"price": "4.50"
+}
+```
+
+The API response includes the product ID, fields, and timestamps. Store API write requests also require a valid CSRF token.
+
 ### Admin interface
 
-`Post` is registered in `blog/admin.py`, so staff users can create, view, edit, and delete posts through Django admin:
+`Post` and `Product` are registered in their apps' `admin.py` files, so staff users can manage both through Django admin:
 
 1. Apply migrations with `python manage.py migrate`.
 2. Create an admin account with `python manage.py createsuperuser` and follow the prompts.
 3. Start the server with `python manage.py runserver`.
-4. Open `http://127.0.0.1:8000/admin/`, sign in, and select **Posts** to manage blog entries.
+4. Open `http://127.0.0.1:8000/admin/`, sign in, and select **Posts** or **Products**.
 
-The admin site and API use the same database. Posts created in the admin appear in the API, and posts created through the API appear in admin.
+The admin site and APIs use the same database. Posts and products created in admin appear in their APIs, and records created through the APIs appear in admin.
 
 ## Common Django Commands
 
